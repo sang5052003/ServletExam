@@ -1,0 +1,13 @@
+package com.kosta.example.person.store;
+
+import java.util.ArrayList;
+
+import com.kosta.example.person.domain.Person;
+
+public class PersonStoreLogic {
+	private ArrayList<Person> list;
+	
+	public PersonStoreLogic() {
+		this.list = new ArrayList<>();
+	}
+}

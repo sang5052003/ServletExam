@@ -1,0 +1,7 @@
+package com.kosta.example.person.service;
+
+import com.kosta.example.person.store.PersonStoreLogic;
+
+public class PersonServiceLogic {
+	private PersonStoreLogic store;
+}

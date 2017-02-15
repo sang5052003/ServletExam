@@ -1,0 +1,5 @@
+package com.kosta.example.person.domain;
+
+public class Person {
+	
+}

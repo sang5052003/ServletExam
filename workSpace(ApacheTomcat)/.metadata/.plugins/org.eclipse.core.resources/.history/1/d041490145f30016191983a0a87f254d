@@ -1,0 +1,17 @@
+package com.kosta.example.person.domain;
+
+public class Person {
+	private String name;
+	private int age;
+	private String address;
+	
+	public Person() {}
+	
+	public Person(String name, int age, String address) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.address = address;
+	}
+	
+}

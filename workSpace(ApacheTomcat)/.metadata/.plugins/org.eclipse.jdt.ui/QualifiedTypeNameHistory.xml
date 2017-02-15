@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.kosta.example.person.store.PersonStoreLogic"/>
+<fullyQualifiedTypeName name="com.kosta.example.person.service.PersonServiceLogic"/>
+<fullyQualifiedTypeName name="com.kosta.example.person.domain.Person"/>
+<fullyQualifiedTypeName name="java.io.Writer"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="com.kosta.domain.Person"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+</qualifiedTypeNameHistroy>

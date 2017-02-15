@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;PersonStoreLogic.java&apos; to &apos;PersonTest/src/com.kosta.store&apos;&#x0D;&#x0A;- Original project: &apos;PersonProject&apos;&#x0D;&#x0A;- Destination element: &apos;PersonTest/src/com.kosta.store&apos;&#x0D;&#x0A;- Original element: &apos;com.kosta.example.person.store.PersonStoreLogic.java&apos;" description="Copy compilation unit" destination="=PersonTest/src&lt;com.kosta.store" element1="/src&lt;com.kosta.example.person.store{PersonStoreLogic.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1487148191341" units="1" version="1.0"/>
+</session>
