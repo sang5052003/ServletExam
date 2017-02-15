@@ -1,2 +1,0 @@
-INDEX VERSION 1.129+C:\Users\kosta\Downloads\workSpace(Git)\ServletExam\workSpace(ApacheTomcat)\.metadata\.plugins\org.eclipse.jdt.core
-3867580250.index
