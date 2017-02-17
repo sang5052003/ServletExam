@@ -1,0 +1,31 @@
+div.contents{
+	width: 600px;
+}
+
+.mainTable{
+	border-top: solid 1px;
+	padding: 0;
+	margin: 0;
+	width: 560px;
+}
+
+.mainTable tr{
+	height: 30px;
+}
+
+.mainTable th{
+	font-size: 12px;
+	background-color: #006600;
+	color: white;
+}
+
+.subTable{
+	padding: 0px;
+	border-spacing: 0;
+}
+
+.rightBtn{
+	float: right;
+	margin: 20px 50px 0 0;
+}
+
