@@ -1,7 +1,0 @@
-INDEX VERSION 1.3+C:\Users\kosta\workSpace(ApacheTomcat)\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3867580250.index
-996298243.index
-3772068043.index
-60791418.index
-3856076871.index
-1657330681.index

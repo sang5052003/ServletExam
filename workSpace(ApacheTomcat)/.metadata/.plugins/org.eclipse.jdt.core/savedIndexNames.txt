@@ -1,6 +1,0 @@
-INDEX VERSION 1.129+C:\Users\kosta\workSpace(ApacheTomcat)\.metadata\.plugins\org.eclipse.jdt.core
-3856076871.index
-3772068043.index
-60791418.index
-1657330681.index
-3867580250.index
