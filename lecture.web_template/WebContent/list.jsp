@@ -11,6 +11,8 @@
 <link href="resources/css/style.css" rel="stylesheet">
 </head>
 <body>
+<!-- 헤더에 써놓은 jspf(jsp) - 로그인/로그아웃 - 추가 -->
+<%@ include file="header/header.jspf" %>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -30,9 +32,11 @@
 							<th>강좌ID</th>
 							<th>강좌명</th>
 							<th>강사</th>
-							<!-- 로그인되면 수정 삭제 가능 생략 -->
-							<th>UPDATE</th>
-							<th>DELETE</th>
+							<!-- 로그인(admin이면)되면 수정 삭제 가능 -->
+							<c:if test="${isAdmin }">
+								<th>UPDATE</th>
+								<th>DELETE</th>
+							</c:if>
 						</tr>
 					</thead>
 					<tbody>
@@ -51,8 +55,10 @@
 										<td>${lecture.id }</td>
 										<td><a href="detail.do?id=${lecture.id }">${lecture.lectureName }</a></td>
 										<td>${lecture.instructor }</td>
-										<td><a href="modify.do?id=${lecture.id }" class="btn btn-xs btn-warning">UPDATE</a></td>
-										<td><a href="remove.do?id=${lecture.id }" class="btn btn-xs btn-danger">DELETE</a></td>
+										<c:if test="${isAdmin }">
+											<td><a href="modify.do?id=${lecture.id }" class="btn btn-xs btn-warning">UPDATE</a></td>
+											<td><a href="remove.do?id=${lecture.id }" class="btn btn-xs btn-danger">DELETE</a></td>
+										</c:if>
 									</tr>
 								</c:forEach>
 								
@@ -61,7 +67,9 @@
                         </c:choose>
 					</tbody>
 				</table>
-				<a class="btn btn-sm btn-success" href="registerForm.jsp">강좌등록</a>
+				<c:if test="${isAdmin }">
+					<a class="btn btn-sm btn-success" href="registerForm.jsp">강좌등록</a>
+				</c:if>
 			</div>
 		</div>
 	</div>
