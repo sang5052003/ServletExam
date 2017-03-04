@@ -10,6 +10,7 @@ import yorizori.domain.User;
  * Application Lifecycle Listener implementation class UserAccessLoginListener
  *
  */
+//로그 찍는용으로 사용(IO로 로그파일 만들기 가능)
 @WebListener
 public class UserAccessLoginListener implements HttpSessionAttributeListener {
 

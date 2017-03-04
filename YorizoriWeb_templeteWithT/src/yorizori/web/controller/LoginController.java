@@ -41,8 +41,9 @@ public class LoginController extends HttpServlet {
 	
 		String saveIdYn = request.getParameter("saveIdYn");
 		
+		Cookie cookie = null;
 		if("Y".equals(saveIdYn)){
-			Cookie cookie = new Cookie("userId", userId);
+			cookie = new Cookie("userId", userId);
 			
 			//생존시간을 적어줘야 브라우저 꺼도 쿠키가 살아있는다
 			cookie.setMaxAge(3600); 
@@ -51,7 +52,7 @@ public class LoginController extends HttpServlet {
 			response.addCookie(cookie);
 		}
 		else{
-			Cookie cookie = new Cookie("userId", null);
+			cookie = new Cookie("userId", null);
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
@@ -79,7 +80,7 @@ public class LoginController extends HttpServlet {
 			
 			//예외처리
 			//back으로 이전 페이지 가므로
-			//url셋팅이 필요없음
+			//url셋팅이 필요없음 -> 비어있으면 ""
 			throw new YzRuntimeException("로그인 정보를 확인하세요");
 		}
 		

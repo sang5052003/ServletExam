@@ -1,4 +1,4 @@
-<!-- scriptlit을 써야지 볼수 있는 import형태 -->
+<!-- scriptlet을 써야지 볼수 있는 import형태 -->
 <%@page import="yorizori.common.exception.YzRuntimeException"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
