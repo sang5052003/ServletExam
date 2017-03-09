@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="blog.store.mapper.AuthorMapper"> <!-- AuthorMapper인터페이스 -->
+  
+  <!-- type="Author" 반환값 -->
+  <resultMap type="Author" id="authorMap">
+  	<id column="author_id" property="id"/> <!-- result가 아닌 id의 의미 : primary-key.., db와 도메인 필드 맞추기 -->
+  	<result column="author_password" property="password"/>
+  	<result column="author_name" property="name"/>
+  	<!-- <constructor></constructor> -> set으로 도메인 설정하는대신 생성자로 만들도록 할 수 있다 -->
+  </resultMap>
+  
+  <sql id="selectAuthor">
+  		SELECT author_id, author_password, author_name, email
+  		FROM author_tb
+  </sql>
+  
+  	<select id="findAuthor" parameterType="string" resultMap="authorMap"><!-- resultType대신 map으로 체인지 -->
+  		<include refid="selectAuthor"/><!-- <sql로 설정함> -->
+  		WHERE author_id = #{id}
+  	</select>
+  	
+  	<select id="findAllAuthors" resultMap="authorMap">
+  		<include refid="selectAuthor"/>
+  		ORDER BY author_id DESC
+  	</select>
+  	
+  	<select id="findAuthorsByIds" resultMap="authorMap">
+  		<include refid="selectAuthor"/>
+  		WHERE author_id IN
+  		<foreach collection="list" item="id" separator="," open="(" close=")">
+  			#{id}
+  		</foreach>
+  	</select>
+  	
+  	<!-- resultType="Author" 으로 해도 되는 이유 -->
+  	<!-- SELECT author_id, author_password, author_name, email 쿼리에 쓰인 값과 순서가 -->
+  	<!-- 도메인에 선언된 순서가 같고 빠짐없이 쓰였기 때문에(String이고..) -->
+  	<select id="findAuthorByCondition" parameterType="hashmap" resultType="Author">
+  		<include refid="selectAuthor"/>
+  		<if test="id != null">
+  			WHERE author_id = #{id}
+  		</if>
+  		<!-- if문을 더 써서 확장가능(ex : name을 키로 주고 name찾기..) -->
+  	</select>
+  	
+  	<select id="findAuthorsByName" parameterType="string" resultMap="authorMap">
+		 <include refid="selectAuthor"/>
+		 WHERE author_name = #{name} 	
+  	</select>
+  	
+  	<insert id="registAuthor" parameterType="Author">
+  		INSERT INTO author_tb (author_id, author_password, author_name, email)
+  		VALUES(#{id}, #{password}, #{name}, #{email})  
+  	</insert>
+  	
+  	<delete id="deleteAuthor" parameterType="string">
+  		DELETE author_tb
+  		WHERE author_id = #{id}
+  	</delete>
+  	
+  	<update id="updateAuthor" parameterType="Author">
+  		UPDATE author_tb
+  		SET author_id=#{id}, author_password=#{password}, author_name=#{name}, email=#{email}
+  		WHERE author_id=#{id}
+  	</update>
+  	
+  </mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="blog.store.mapper.PostMapper">
+	<resultMap type="Post" id="postMap">
+		<id property="id" column="id" />
+		<result property="subject" column="subject" />
+		<result property="contents" column="contents" />
+		<association property="author" column="author_id"
+			select="blog.store.mapper.AuthorMapper.findAuthor" javaType="Author"
+			jdbcType="VARCHAR" />
+		<association property="blog" column="blog_id"
+			select="blog.store.mapper.BlogMapper.findBlog" javaType="Author"
+			jdbcType="VARCHAR" />
+
+		<collection property="comments" column="post_id" ofType="Comment"
+			select="blog.store.mapper.PostMapper.findCommentsByPostId" javaType="ArrayList"
+			jdbcType="NUMERIC" />
+
+		<collection property="tags" column="post_id" ofType="Tag"
+			select="blog.store.mapper.PostMapper.findTagsByPostId" javaType="ArrayList"
+			jdbcType="NUMERIC" />
+
+	</resultMap>
+
+	<!-- Comment용 resultMap -->
+	<resultMap type="Comment" id="commentMap">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="comment" column="comment_contents" />
+		<association property="post" column="post_id"
+			select="blog.store.mapper.PostMapper.findPost" javaType="Post"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap type="Tag" id="tagMap">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+	</resultMap>
+
+	<!-- /////////////// -->
+
+	<select id="findPost" parameterType="int" resultMap="postMap">
+		SELECT id,
+		subject, contents, author_id, blog_id
+		FROM post_tb
+		WHERE id = #{id}
+	</select>
+
+	<!-- comment를 찾기 위한.. -->
+	<select id="findCommentsByPostId" parameterType="int" resultMap="commentMap">
+		SELECT id, name, comment_contents, post_id
+		FROM comment_tb
+		WHERE post_id
+		= #{id}
+	</select>
+
+	<select id="findTagsByPostId" parameterType="int" resultMap="tagMap">
+		SELECT id, name, post_id
+		FROM tag_tb
+		WHERE post_id = #{postId}
+	</select>
+
+	<select id="findAllPost" parameterType="int" resultMap="postMap">
+		SELECT
+		id, subject, contents, author_id, blog_id
+		FROM post_tb
+	</select>
+
+	<select id="findPostsByAuthorName" parameterType="string"
+		resultMap="postMap">
+		SELECT P.id, P.subject, P.contents, P.author_id, P.blog_id
+		FROM post_tb P, author_tb A
+		WHERE P.author_id = A.author_id
+		AND
+		A.author_name = #{authorName}
+	</select>
+
+	<select id="findPostsByBlogTitle" parameterType="string"
+		resultMap="postMap">
+		SELECT P.id, P.subject, P.contents, P.author_id, P.blog_id
+		FROM post_tb P, blog_tb B
+		WHERE P.blog_id = B.blog_id
+		AND B.title =
+		#{blogTitle}
+	</select>
+
+	<select id="findPostsBySubject" parameterType="string"
+		resultMap="postMap">
+		SELECT id, subject, contents, author_id, blog_id
+		FROM post_tb
+		WHERE subject = #{subject}
+	</select>
+	
+	<select id="findPostsByContents" parameterType="string"
+		resultMap="postMap">
+		SELECT id, subject, contents, author_id, blog_id
+		FROM post_tb
+		WHERE contents = #{contents}
+	</select>
+
+	
+
+</mapper>

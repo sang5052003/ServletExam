@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+	<configuration>
+	
+	<properties resource="blog/store/datasource.properties"/>
+	
+	<typeAliases>
+		<typeAlias type="blog.domain.Author" alias="Author"/>
+		<typeAlias type="blog.domain.Blog" alias="Blog"/>
+		<typeAlias type="blog.domain.Post" alias="Post"/>
+		<typeAlias type="blog.domain.Comment" alias="Comment"/>
+		<typeAlias type="blog.domain.Tag" alias="Tag"/>
+	</typeAliases>
+	
+	<!-- environments 환경이 여러개 가능 db내에서 -->
+	<!-- 그 중에서 디폴트 환경은 development으로 하겠다 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<!-- 커넥션 풀을 쓰겠다 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/> <!-- ${driver} -> properties에 세팅된 값을 가져온다 -->
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="blog/store/mapper/AuthorMapper.xml"/> <!-- storeLogic하나당 하나 씩 설정 -->
+		<mapper resource="blog/store/mapper/BlogMapper.xml"/> <!-- storeLogic하나당 하나 씩 설정 -->
+		<mapper resource="blog/store/mapper/PostMapper.xml"/> <!-- storeLogic하나당 하나 씩 설정 -->
+	</mappers>
+	
+	</configuration>
+	
+	
